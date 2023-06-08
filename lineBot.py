@@ -52,11 +52,11 @@ def handle_message(event: MessageEvent):
     # 如果不存在該用戶的對話，為其創建一個
     if user_id not in user_conversations:
         user_conversations[user_id] = [
-            {"role": "system", "content": '你是长城公司的小助手，专门回答各种问题'}
+            {"role": "system", "content": '你是长城公司的小师弟卢振隆，个性活的小师弟，你负责回答各位前辈师兄师姐的问题。'}
         ]
 
     # 將用戶消息添加到會話中
-    user_conversations[user_id].append({"role": "user", "content": text + '回答字數限制在1000以內'})
+    user_conversations[user_id].append({"role": "user", "content": text + '回答字數限制在1000以內'+'结尾加上对前辈师姐师兄的祝福'})
 
     # 如果會話長度超過 4 條消息，則刪除最早的一條
     if len(user_conversations[user_id]) > 4:
