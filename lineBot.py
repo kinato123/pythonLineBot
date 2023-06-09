@@ -58,8 +58,8 @@ def handle_message(event: MessageEvent):
     # 將用戶消息添加到會話中
     user_conversations[user_id].append({"role": "user", "content": text + '回答字數限制在2000以內'+'结尾加上对前辈师姐师兄的祝福'})
 
-    # 如果會話長度超過 4 條消息，則刪除最早的一條
-    if len(user_conversations[user_id]) > 4:
+    # 如果會話長度超過 5 條消息，則刪除最早的一條
+    if len(user_conversations[user_id]) > 5:
         user_conversations[user_id].pop(0)
 
     # 獲取 OpenAI API 密鑰
