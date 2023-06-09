@@ -68,7 +68,7 @@ def handle_message(event: MessageEvent):
     # 使用 OpenAI API 獲取回復
     ai.api_key = openai_api_key
     openai_response =  ai.ChatCompletion.create(
-        model="GPT-4",
+        model="gpt-4",
         messages=user_conversations[user_id]
     )
 
