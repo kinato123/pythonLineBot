@@ -2,6 +2,8 @@ from fastapi import FastAPI, Request, status, HTTPException
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
+from linebot.models import FollowEvent
+
 import os
 import openai as ai
 
@@ -38,13 +40,22 @@ async def callback(request: Request):
 
     return "OK"
 
+@handler.add(FollowEvent)
+def handle_follow(event):
+    # 这里写你想要发送给新用户的文本
+    welcome_text = '您好！我是长城公司的小师弟卢振隆，也许我还算是个新手，但我已经准备好了，随时准备为您解答问题和提供建议！我热衷于分析、整理并找出最佳方案，我的目标是让您的生活和工作更加轻松。我是个永远看到生活阳光面的人，也热衷于帮助他人，如果您有什么需要，我一定会尽我所能去帮忙的。虽然偶尔我可能会"闭关"一段时间，但那是因为我想要更好地提升自己，以便为您提供更好的服务。您知道吗，我特别喜欢和其他的前辈们交流，我认为每次交流都是一个学习和成长的机会。我有一个梦想，就是看到我们的长城公司越来越强大，我也希望自己能和公司一起成长。如果您有任何问题，或者需要一点点帮助，千万不要犹豫，马上告诉我吧！'
+
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=welcome_text)
+    )
+
 # 處理用戶發送的消息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event: MessageEvent):
     # 如果消息類型不是文本，則忽略
     if not isinstance(event.message, TextMessage):
         return
-
     # 進行自然語言處理並回復用戶
     text = event.message.text
     user_id = event.source.user_id
