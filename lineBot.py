@@ -60,9 +60,6 @@ def handle_message(event: MessageEvent):
     # 進行自然語言處理並回復用戶
     text = event.message.text
     user_id = event.source.user_id
-    
-     # 在這裡加入已讀標記的代碼
-    line_bot_api.mark_as_read(user_id)
 
     # 如果不存在該用戶的對話，為其創建一個
     if user_id not in user_conversations:
