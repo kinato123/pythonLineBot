@@ -80,7 +80,7 @@ def handle_message(event: MessageEvent):
         ]
 
     # 將用戶消息添加到會話中
-    user_conversations[user_id].append({"role": "user", "content": text + '回答字数制限は150字以内'+'終わる時は面接官に次の質問があるか確認する'+ '回答する時楽観的に' })
+    user_conversations[user_id].append({"role": "user", "content": text + '回答字数制限は150字以内'+'終わる時は面接官に次の質問があるか確認する'+ '離職などの理由を聞かれたら本人に聞いてくださいと答えるように' })
 
     # 如果會話長度超過 5 條消息，則刪除最早的一條
     if len(user_conversations[user_id]) > 4:
