@@ -104,3 +104,5 @@ def handle_message(event: MessageEvent):
 
     # 使用 LINE API 回復用戶
     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=assistant_reply))
+    
+    
